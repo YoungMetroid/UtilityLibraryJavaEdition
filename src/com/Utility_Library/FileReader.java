@@ -1,5 +1,6 @@
 package com.Utility_Library;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class FileReader {
             BufferedReader in = new BufferedReader(new InputStreamReader(fileInputStream));
             String aLine;
 
-            while ((aLine = in.readLine()) != null) {
+            while ((aLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 fileLines.add(aLine);
             }
         }
