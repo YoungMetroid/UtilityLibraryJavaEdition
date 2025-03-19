@@ -1,5 +1,6 @@
 package com.Utility_Library;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -55,10 +56,10 @@ public class FileManipulator {
 
             if (linesToSkip > 0) {
                 for (int counter = 0; counter < linesToSkip; counter++) {
-                    in.readLine();
+                    BoundedLineReader.readLine(in, 5_000_000);
                 }
             }
-            while ((aLine = in.readLine()) != null) {
+            while ((aLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 out.write(aLine);
                 out.newLine();
             }
@@ -96,7 +97,7 @@ public class FileManipulator {
                 String aLine;
 
 
-                while ((aLine = in.readLine()) != null) {
+                while ((aLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                     out.write(aLine);
                     out.newLine();
                 }
